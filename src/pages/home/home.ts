@@ -11,4 +11,8 @@ export class HomePage {
 
   }
 
+  goToProfile(): void {
+    this.navCtrl.push("ProfilePage");
+    }
+
 }
