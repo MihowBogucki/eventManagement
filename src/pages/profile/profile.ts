@@ -13,6 +13,7 @@ import { AuthProvider } from '../../providers/auth/auth';
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
+
 export class ProfilePage {
   public userProfile: any;
   public birthDate: string;
