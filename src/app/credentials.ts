@@ -5,4 +5,4 @@ export const firebaseConfig = {
   projectId: "eventmanager-1521e",
   storageBucket: "eventmanager-1521e.appspot.com",
   messagingSenderId: "554477154997"
-  };
+};

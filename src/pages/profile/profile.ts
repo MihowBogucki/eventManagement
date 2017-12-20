@@ -1,21 +1,22 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import {
   Alert,
   AlertController,
   IonicPage,
   NavController
-} from "ionic-angular";
-import { ProfileProvider } from "../../providers/profile/profile";
-import { AuthProvider } from "../../providers/auth/auth";
+} from 'ionic-angular';
+import { ProfileProvider } from '../../providers/profile/profile';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
-  selector: "page-profile",
-  templateUrl: "profile.html"
+  selector: 'page-profile',
+  templateUrl: 'profile.html'
 })
 export class ProfilePage {
   public userProfile: any;
   public birthDate: string;
+
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -24,7 +25,7 @@ export class ProfilePage {
   ) {}
 
   ionViewDidLoad() {
-    this.profileProvider.getUserProfile().on("value", userProfileSnapshot => {
+    this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
       this.birthDate = userProfileSnapshot.val().birthDate;
     });
@@ -32,29 +33,29 @@ export class ProfilePage {
 
   logOut(): void {
     this.authProvider.logoutUser().then(() => {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot('LoginPage');
     });
   }
 
   updateName(): void {
     const alert: Alert = this.alertCtrl.create({
-      message: "Your first name & last name",
+      message: 'Your first name & last name',
       inputs: [
         {
-          name: "firstName",
-          placeholder: "Your first name",
+          name: 'firstName',
+          placeholder: 'Your first name',
           value: this.userProfile.firstName
         },
         {
-          name: "lastName",
-          placeholder: "Your last name",
+          name: 'lastName',
+          placeholder: 'Your last name',
           value: this.userProfile.lastName
         }
       ],
       buttons: [
-        { text: "Cancel" },
+        { text: 'Cancel' },
         {
-          text: "Save",
+          text: 'Save',
           handler: data => {
             this.profileProvider.updateName(data.firstName, data.lastName);
           }
@@ -71,21 +72,21 @@ export class ProfilePage {
   updateEmail(): void {
     let alert: Alert = this.alertCtrl.create({
       inputs: [
-        { name: "newEmail", placeholder: "Your new email" },
-        { name: "password", placeholder: "Your password", type: "password" }
+        { name: 'newEmail', placeholder: 'Your new email' },
+        { name: 'password', placeholder: 'Your password', type: 'password' }
       ],
       buttons: [
-        { text: "Cancel" },
+        { text: 'Cancel' },
         {
-          text: "Save",
+          text: 'Save',
           handler: data => {
             this.profileProvider
               .updateEmail(data.newEmail, data.password)
               .then(() => {
-                console.log("Email Changed Successfully");
+                console.log('Email Changed Successfully');
               })
               .catch(error => {
-                console.log("ERROR: " + error.message);
+                console.log('ERROR: ' + error.message);
               });
           }
         }
@@ -93,16 +94,17 @@ export class ProfilePage {
     });
     alert.present();
   }
+
   updatePassword(): void {
     let alert: Alert = this.alertCtrl.create({
       inputs: [
-        { name: "newPassword", placeholder: "New password", type: "password" },
-        { name: "oldPassword", placeholder: "Old password", type: "password" }
+        { name: 'newPassword', placeholder: 'New password', type: 'password' },
+        { name: 'oldPassword', placeholder: 'Old password', type: 'password' }
       ],
       buttons: [
-        { text: "Cancel" },
+        { text: 'Cancel' },
         {
-          text: "Save",
+          text: 'Save',
           handler: data => {
             this.profileProvider.updatePassword(
               data.newPassword,
