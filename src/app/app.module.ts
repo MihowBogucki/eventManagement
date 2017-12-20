@@ -10,7 +10,11 @@ import { AuthProvider } from '../providers/auth/auth';
 import { EventProvider } from '../providers/event/event';
 import { ProfileProvider } from '../providers/profile/profile';
 import { Camera } from '@ionic-native/camera';
+import { Pro } from '@ionic/pro';
 
+const IonicPro = Pro.init('42df0124', {
+  appVersion: "0.0.1"
+});
 
 @NgModule({
   declarations: [
